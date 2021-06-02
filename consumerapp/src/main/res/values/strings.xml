@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">consumerapp</string>
+    <string name="detail_name">Detail Nam</string>
+    <string name="detail_username">Detail Username</string>
+    <string name="detail_location">Detail Location</string>
+    <string name="detail_repository">Detail Repo</string>
+    <string name="detail_company">Detail Company</string>
+    <string name="detail_followers">Detail Follower</string>
+    <string name="detail_following">DetailFollowing</string>
+    <string name="followers">Followers</string>
+    <string name="following">Following</string>
+</resources>

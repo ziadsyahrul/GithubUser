@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Sub2BFAA</string>
+    <string name="detail_name">Detail Nam</string>
+    <string name="detail_username">Detail Username</string>
+    <string name="detail_location">Detail Location</string>
+    <string name="detail_repository">Detail Repo</string>
+    <string name="detail_company">Detail Company</string>
+    <string name="detail_followers">Detail Follower</string>
+    <string name="detail_following">DetailFollowing</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="search">Search</string>
+    <string name="followers">Followers</string>
+    <string name="following">Following</string>
+    <string name="favoritemenu">FavoriteMenu</string>
+    <string name="setting">Setting</string>
+    <string name="alarm">Alarm Daily Reminder</string>
+</resources>
