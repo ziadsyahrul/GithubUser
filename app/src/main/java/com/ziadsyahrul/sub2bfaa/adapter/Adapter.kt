@@ -9,6 +9,7 @@ import com.ziadsyahrul.sub2bfaa.DetailActivity
 import com.ziadsyahrul.sub2bfaa.ItemClick.OnItemClickCallback
 import com.ziadsyahrul.sub2bfaa.User
 import com.ziadsyahrul.sub2bfaa.databinding.UserListBinding
+import com.ziadsyahrul.sub2bfaa.helper.Constant
 
 class Adapter(private val listData: ArrayList<User>): RecyclerView.Adapter<Adapter.UserViewHolder>() {
 
@@ -41,8 +42,8 @@ class Adapter(private val listData: ArrayList<User>): RecyclerView.Adapter<Adapt
 
             itemView.setOnClickListener {
                 val intent = Intent(itemView.context, DetailActivity::class.java)
-                intent.putExtra(DetailActivity.EXTRA_USER, user)
-                intent.putExtra(DetailActivity.EXTRA_FAV, user)
+                intent.putExtra(Constant.EXTRA_USER, user)
+                intent.putExtra(Constant.EXTRA_FAV, user)
                 itemView.context.startActivity(intent)
             }
 

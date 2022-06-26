@@ -15,4 +15,5 @@
     <string name="favoritemenu">FavoriteMenu</string>
     <string name="setting">Setting</string>
     <string name="alarm">Alarm Daily Reminder</string>
+    <string name="find_username">Find Username</string>
 </resources>
