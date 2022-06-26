@@ -36,13 +36,31 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         getGithubUser()
+        searchUser()
 
+    }
+
+    private fun searchUser() { binding.search.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+        override fun onQueryTextSubmit(query: String): Boolean {
+            if (query.isEmpty()) {
+                return true
+            } else {
+                listData.clear()
+                getSearch(query)
+            }
+            return true
+        }
+
+        override fun onQueryTextChange(newText: String): Boolean {
+            return false
+        }
+    })
     }
 
     private fun getGithubUser() {
         showLoading(true)
         val clint = AsyncHttpClient()
-        clint.addHeader("Authorization", "token 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")
+        clint.addHeader("Authorization", "token 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")
         clint.addHeader("User-Agent", "request")
         val url = "https://api.github.com/users"
         clint.get(url, object : AsyncHttpResponseHandler() {
@@ -87,7 +105,7 @@ class MainActivity : AppCompatActivity() {
     private fun getDetail(username: String) {
         showLoading(true)
         val client = AsyncHttpClient()
-        client.addHeader("Authorization", "token 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")
+        client.addHeader("Authorization", "token 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")
         client.addHeader("User-Agent", "request")
         val url = "https://api.github.com/users/$username"
         client.get(url, object : AsyncHttpResponseHandler() {
@@ -148,7 +166,7 @@ class MainActivity : AppCompatActivity() {
     private fun getSearch(username: String) {
         showLoading(true)
         val client = AsyncHttpClient()
-        client.addHeader("Authorization", "token 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")
+        client.addHeader("Authorization", "token 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")
         client.addHeader("User-Agent", "request")
         val url = "https://api.github.com/search/users?q=$username"
         client.get(url, object : AsyncHttpResponseHandler() {
@@ -194,28 +212,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        val inflater = menuInflater
-        inflater.inflate(R.menu.menu, menu)
-
-        val searchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
-        val searchView = menu?.findItem(R.id.menu)?.actionView as SearchView
-
-        searchView.setSearchableInfo(searchManager.getSearchableInfo(componentName))
-        searchView.queryHint = resources.getString(R.string.search)
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                listData.clear()
-                getSearch(query.toString())
-                return true
-            }
-
-            override fun onQueryTextChange(newText: String?): Boolean {
-                return false
-            }
-
-        })
-
-        return true
+        menuInflater.inflate(R.menu.menu, menu)
+        return super.onCreateOptionsMenu(menu)
 
     }
 
