@@ -20,6 +20,7 @@ import com.ziadsyahrul.sub2bfaa.db.DatabaseContract.FavoriteColumn.Companion.NAM
 import com.ziadsyahrul.sub2bfaa.db.DatabaseContract.FavoriteColumn.Companion.PHOTO
 import com.ziadsyahrul.sub2bfaa.db.DatabaseContract.FavoriteColumn.Companion.REPOSITORY
 import com.ziadsyahrul.sub2bfaa.db.DatabaseContract.FavoriteColumn.Companion.USERNAME
+import com.ziadsyahrul.sub2bfaa.helper.Constant
 import com.ziadsyahrul.sub2bfaa.helper.FavoriteHelper
 import com.ziadsyahrul.sub2bfaa.model.FavoriteModel
 
@@ -32,11 +33,6 @@ class DetailActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var imagePhoto: String
 
     companion object {
-        const val EXTRA_USER = "extra_user"
-        const val EXTRA_FAV = "extra_user"
-        const val EXTRA_POSISI = "extra_posisi"
-        const val EXTRA_FAVORITE = "extra_favorite"
-
         @StringRes
         private val TAB_TITLES = intArrayOf(
             R.string.followers,
@@ -52,10 +48,10 @@ class DetailActivity : AppCompatActivity(), View.OnClickListener {
         favHelper = FavoriteHelper.getInstance(applicationContext)
         favHelper.open()
 
-        favorites = intent.getParcelableExtra(EXTRA_FAVORITE)
+        favorites = intent.getParcelableExtra(Constant.EXTRA_FAVORITE)
         if (favorites != null) {
             with(binding) {
-                val data = intent.getParcelableExtra<FavoriteModel>(EXTRA_FAVORITE)
+                val data = intent.getParcelableExtra<FavoriteModel>(Constant.EXTRA_FAVORITE)
                 nameDetail.text = data?.name
                 usernameDetail.text = data?.username
                 companyDetail.text = data?.company
@@ -71,7 +67,7 @@ class DetailActivity : AppCompatActivity(), View.OnClickListener {
             binding.btnFavorite.setImageResource(check)
         } else {
             with(binding) {
-                val data = intent.getParcelableExtra<User>(EXTRA_USER)
+                val data = intent.getParcelableExtra<User>(Constant.EXTRA_USER)
                 nameDetail.text = data?.name
                 usernameDetail.text = data?.user_name
                 companyDetail.text = data?.company
@@ -105,7 +101,11 @@ class DetailActivity : AppCompatActivity(), View.OnClickListener {
             if (p0?.id == R.id.btn_favorite) {
                 if (isFavorite) {
                     favHelper.deleteByUsername(favorites?.username.toString())
-                    Toast.makeText(this@DetailActivity, "Dihapus dari list favorite", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        this@DetailActivity,
+                        "Dihapus dari list favorite",
+                        Toast.LENGTH_SHORT
+                    ).show()
                     btnFavorite.setImageResource(uncheck)
                     isFavorite = false
                 } else {
@@ -132,7 +132,11 @@ class DetailActivity : AppCompatActivity(), View.OnClickListener {
 
                     isFavorite = true
                     contentResolver.insert(CONTENT_URI, values)
-                    Toast.makeText(this@DetailActivity, "Ditambahkan ke list favorite", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        this@DetailActivity,
+                        "Ditambahkan ke list favorite",
+                        Toast.LENGTH_SHORT
+                    ).show()
                     btnFavorite.setImageResource(check)
 
                 }

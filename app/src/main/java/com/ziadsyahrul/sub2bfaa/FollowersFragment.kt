@@ -12,6 +12,7 @@ import com.loopj.android.http.AsyncHttpClient
 import com.loopj.android.http.AsyncHttpResponseHandler
 import com.ziadsyahrul.sub2bfaa.adapter.FollowersAdapter
 import com.ziadsyahrul.sub2bfaa.databinding.FragmentFollowersBinding
+import com.ziadsyahrul.sub2bfaa.helper.Constant
 import com.ziadsyahrul.sub2bfaa.model.FavoriteModel
 import cz.msebera.android.httpclient.Header
 import org.json.JSONArray
@@ -47,7 +48,7 @@ class FollowersFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         followersAdapter = FollowersAdapter(listFollower)
 
-        favorites = activity?.intent?.getParcelableExtra(DetailActivity.EXTRA_FAVORITE)
+        favorites = activity?.intent?.getParcelableExtra(Constant.EXTRA_FAVORITE)
         if (favorites != null){
             getFollowers(activity?.intent?.getParcelableExtra<FavoriteModel>(EXTRA_FAVORITE)?.username.toString())
         }else{

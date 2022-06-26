@@ -18,6 +18,7 @@ import com.loopj.android.http.AsyncHttpResponseHandler
 import com.ziadsyahrul.sub2bfaa.ItemClick.OnItemClickCallback
 import com.ziadsyahrul.sub2bfaa.adapter.Adapter
 import com.ziadsyahrul.sub2bfaa.databinding.ActivityMainBinding
+import com.ziadsyahrul.sub2bfaa.helper.Constant
 import cz.msebera.android.httpclient.Header
 import org.json.JSONArray
 import org.json.JSONObject
@@ -83,7 +84,7 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-    private fun getDetail(username: String){
+    private fun getDetail(username: String) {
         showLoading(true)
         val client = AsyncHttpClient()
         client.addHeader("Authorization", "token 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")
@@ -102,14 +103,14 @@ class MainActivity : AppCompatActivity() {
                     val json = JSONObject(String(responseBody!!))
                     listData.add(
                         User(
-                            json.getString("login"),
-                            json.getString("name"),
-                            json.getString("avatar_url"),
-                            json.getString("company"),
-                            json.getString("public_repos"),
-                            json.getString("location"),
-                            json.getString("followers"),
-                            json.getString("following"),
+                            json.getString(Constant.login),
+                            json.getString(Constant.name),
+                            json.getString(Constant.avatar_url),
+                            json.getString(Constant.company),
+                            json.getString(Constant.public_repos),
+                            json.getString(Constant.location),
+                            json.getString(Constant.followers),
+                            json.getString(Constant.following),
                         )
                     )
 
@@ -121,13 +122,12 @@ class MainActivity : AppCompatActivity() {
                     adapter.setOnItemClick(object : OnItemClickCallback {
                         override fun onItemClicked(user: User) {
                             val intent = Intent(this@MainActivity, DetailActivity::class.java)
-                            intent.putExtra(DetailActivity.EXTRA_USER, listUser)
+                            intent.putExtra(Constant.EXTRA_USER, listUser)
                             startActivity(intent)
                         }
                     })
 
                 } catch (e: Exception) {
-                    Log.d("onsuccess", "onSuccess: ")
                     e.printStackTrace()
                 }
             }
@@ -139,14 +139,13 @@ class MainActivity : AppCompatActivity() {
                 error: Throwable?
             ) {
                 showLoading(false)
-                Log.d("OnFAILURE", "onFailure()")
             }
 
         })
 
     }
 
-    private fun getSearch(username: String){
+    private fun getSearch(username: String) {
         showLoading(true)
         val client = AsyncHttpClient()
         client.addHeader("Authorization", "token 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")
@@ -189,14 +188,13 @@ class MainActivity : AppCompatActivity() {
                 error: Throwable?
             ) {
                 showLoading(false)
-                Log.d("GAGALSEARCH", "onFailure()")
             }
 
         })
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        val inflater  = menuInflater
+        val inflater = menuInflater
         inflater.inflate(R.menu.menu, menu)
 
         val searchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
@@ -222,7 +220,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when(item.itemId){
+        return when (item.itemId) {
             R.id.favorite_menu -> {
                 val intent = Intent(this, FavoriteActivity::class.java)
                 startActivity(intent)
@@ -238,7 +236,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun showLoading(state: Boolean){
+    fun showLoading(state: Boolean) {
         if (state) {
             binding.progressBar.visibility = View.VISIBLE
         } else {
