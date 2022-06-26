@@ -10,6 +10,7 @@ import com.squareup.picasso.Picasso
 import com.ziadsyahrul.sub2bfaa.DetailActivity
 import com.ziadsyahrul.sub2bfaa.ItemClick.OnItemClickListener
 import com.ziadsyahrul.sub2bfaa.databinding.UserListBinding
+import com.ziadsyahrul.sub2bfaa.helper.Constant
 import com.ziadsyahrul.sub2bfaa.model.FavoriteModel
 
 class FavoriteAdapter(private val activity: Activity) :
@@ -50,8 +51,8 @@ class FavoriteAdapter(private val activity: Activity) :
                         object : OnItemClickListener.ItemClickCallback {
                             override fun onItemClicked(view: View, position: Int) {
                                 val intent = Intent(activity, DetailActivity::class.java)
-                                intent.putExtra(DetailActivity.EXTRA_POSISI, position)
-                                intent.putExtra(DetailActivity.EXTRA_FAVORITE, favorite)
+                                intent.putExtra(Constant.EXTRA_POSISI, position)
+                                intent.putExtra(Constant.EXTRA_FAVORITE, favorite)
                                 activity.startActivity(intent)
                             }
 
